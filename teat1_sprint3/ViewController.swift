@@ -9,28 +9,33 @@ import UIKit
 
 class ViewController: UIViewController {
 
-
+    // MARK: - IBOutlet
+    @IBOutlet weak private var counterButton: UIButton!
+    @IBOutlet weak private var counterValueLabel: UILabel!
+    
+    // MARK: - Private Properties
+    // Инициализируем счетчик начальным значение 0 и шагом 1
     private var counter: Counter = Counter(startValue: 0, counterStep: 1)
     
-    
-    @IBOutlet weak var counterButton: UIButton!
-    
-    @IBOutlet weak var counterValueLabel: UILabel!
-    
+    // MARK: - UIViewController(*)
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view.
-        setCounterLabel(text: counter.getText())
-    
+        // Установим начальный текст в label
+        setCounterLabel()
     }
     
+    // MARK: - IBAction
     @IBAction func buttonTapDown(_ sender: UIButton) {
+        // Увеличим счетчик один шаг
         counter.incrementCounterLabel()
-        setCounterLabel(text: counter.getText())
+        // Обновим текст на экране
+        setCounterLabel()
     }
     
-    public func setCounterLabel(text: String) {
-        counterValueLabel.text = text
+    // MARK: - Private Methods
+    // Функция обновляет текст на экране
+    private func setCounterLabel() {
+        counterValueLabel.text = counter.getText()
     }
 }
 
